@@ -1,0 +1,41 @@
+.search-form {
+	width: 400px;
+}
+
+.forms .res-form {
+	width: 382px;
+	height: 46px;
+	margin: 16px;
+	border-radius: 8px;
+}
+
+.forms .col:first-child {
+	margin-right: 28px;
+}
+
+.forms .mini-form {
+	width: 177px;
+	height: 46px;
+	border-radius: 8px;
+}
+
+.forms .row {
+	width: 382px;
+	margin-left: 16px;
+	padding-bottom: 16px;
+}
+
+.forms .col {
+	padding: 0px;
+	flex: 0;
+}
+
+.forms input {
+	font-size: 12px;
+	line-height: 14px;
+	font-size: 12px;
+}
+
+tbody tr td::first-letter {
+	text-transform: capitalize;
+}

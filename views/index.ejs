@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+			crossorigin="anonymous"
+		/>
+
+		<!-- My CSS -->
+		<link rel="stylesheet" href="/css/style.css" />
+
+		<title>Info Produk</title>
+	</head>
+	<body>
+		<!-- Tambah Modal -->
+		<div
+			class="modal fade"
+			id="tambah"
+			tabindex="-1"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<form action="/" method="post">
+						<div class="modal-body">
+							<div class="forms">
+								<input
+									type="text"
+									class="form-control res-form"
+									placeholder="Masukan nama barang"
+									name="nama_produk"
+								/>
+								<input
+									type="text"
+									class="form-control res-form"
+									placeholder="Masukan keterangan barang"
+									name="keterangan"
+								/>
+								<div class="row">
+									<div class="col">
+										<input
+											type="text"
+											class="form-control mini-form"
+											placeholder="Masukan jumlah barang"
+											name="jumlah"
+										/>
+									</div>
+									<div class="col">
+										<input
+											type="text"
+											class="form-control mini-form"
+											placeholder="Masukan harga barang"
+											name="harga"
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button
+									type="button"
+									class="btn btn-secondary"
+									data-bs-dismiss="modal"
+								>
+									Close
+								</button>
+								<button type="submit" class="btn btn-primary">Tambah</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container mt-5">
+			<div class="d-flex justify-content-between">
+				<form action="/find" method="get">
+					<div class="input-group mb-3 search-form">
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Search..."
+							aria-label="Search..."
+							aria-describedby="button-addon2"
+							name="key"
+						/>
+						<button class="btn btn-info" type="submit" id="button-addon2">
+							Cari
+						</button>
+					</div>
+				</form>
+				<div class="addData">
+					<button
+						type="button"
+						class="btn btn-primary"
+						data-bs-toggle="modal"
+						data-bs-target="#tambah"
+					>
+						Tambah Data
+					</button>
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Nama Produk</th>
+						<th scope="col">Keterangan</th>
+						<th scope="col">Jumlah</th>
+						<th scope="col">Harga</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if (products) { %> <% products.forEach( product => { %>
+					<tr id="barang">
+						<td><%= product.nama_produk %></td>
+						<td><%= product.keterangan %></td>
+						<td><%= product.jumlah %></td>
+						<td id="harga-barang"><%= product.harga %></td>
+						<td class="d-flex">
+							<form action="/<%= product.id %>?_method=delete" method="post">
+								<button type="submit" class="btn btn-danger me-2">
+									Delete
+								</button>
+							</form>
+							<button
+								type="button"
+								class="btn btn-primary update-btn"
+								data-bs-toggle="modal"
+								data-bs-target="#update"
+								id="<%= product.id %>"
+								nama="<%= product.nama_produk %>"
+								keterangan="<%= product.keterangan %>"
+								jumlah="<%= product.jumlah %>"
+								harga="<%= product.harga %>"
+							>
+								Update
+							</button>
+						</td>
+					</tr>
+					<% }) %> <% } %>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Update Modal -->
+		<div
+			class="modal fade show"
+			id="update"
+			tabindex="-1"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content update-form"></div>
+			</div>
+		</div>
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+			crossorigin="anonymous"
+		></script>
+
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.js"
+			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			crossorigin="anonymous"
+		></script>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>

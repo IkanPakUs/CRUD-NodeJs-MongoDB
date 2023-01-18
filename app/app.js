@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
-const port = 3000;
+const port = 8000;
 const path = require("path");
 
 require("./config/db.config");
@@ -24,5 +24,5 @@ app.use(express.json());
 app.use("/", web_router);
 
 app.listen(port, (req, res) => {
-	console.log(`Server running in localhost:${port}`);
+	console.log(`Server running in container:${port}`);
 });
